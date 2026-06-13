@@ -213,10 +213,10 @@
 
     <header class="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-white/82 backdrop-blur-xl transition-colors duration-300 dark:bg-ink/82">
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-            <!-- <a href="#home" class="group flex items-center gap-3">
+            <a href="#home" class="group flex items-center gap-3 md:hidden">
                 <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary via-secondary to-accent text-sm font-black text-ink shadow-glow">TT</span>
-                <span class="font-black tracking-tight text-[var(--text)] transition group-hover:text-primary">Thắng Thái</span>
-            </a> -->
+                <span class="text-sm font-black tracking-tight text-[var(--text)] transition group-hover:text-primary">Thắng Thái</span>
+            </a>
             <div class="hidden items-center gap-7 text-sm font-extrabold text-muted md:flex">
                 <a href="#about" class="hover:text-primary transition">Giới thiệu</a>
                 <a href="#experience" class="hover:text-primary transition">Kinh nghiệm</a>
@@ -232,72 +232,73 @@
     </header>
 
     <main id="home">
-        <section class="relative isolate overflow-hidden pb-20 pt-32 sm:pt-36 lg:pb-28">
+        <section class="relative isolate overflow-hidden pb-20 pt-28 sm:pt-36 lg:pb-28">
             <div class="hero-bg absolute inset-0 -z-10"></div>
             <div class="hero-grid absolute inset-0 -z-10 opacity-80"></div>
 
-            <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-[1.12fr_.88fr] lg:px-8">
-                <div>
-                    <div class="mb-6 flex flex-wrap gap-3">
-                        <div class="animated-border inline-flex items-center gap-2 rounded-lg bg-[var(--surface)] px-4 py-2 text-sm font-black text-primary shadow-sm">
+            <div class="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[1.12fr_.88fr] lg:gap-12 lg:px-8">
+                <div class="order-2 lg:order-1">
+                    <div class="mb-5 flex flex-wrap gap-2.5 sm:mb-6 sm:gap-3">
+                        <div class="animated-border inline-flex max-w-full items-start gap-2 rounded-lg bg-[var(--surface)] px-3 py-2 text-left text-xs font-black leading-5 text-primary shadow-sm sm:items-center sm:px-4 sm:text-sm">
                             <i class="fa-solid fa-bolt"></i>
-                            Fullstack EdTech Developer · Technology Instructor
+                            <span>Fullstack EdTech Developer · Technology Instructor</span>
                         </div>
-                        <div class="animated-border inline-flex items-center gap-2 rounded-lg bg-[var(--surface)] px-4 py-2 text-sm font-black text-primary shadow-sm">
+                        <div class="animated-border inline-flex items-center gap-2 rounded-lg bg-[var(--surface)] px-3 py-2 text-xs font-black leading-5 text-primary shadow-sm sm:px-4 sm:text-sm">
                             <i class="fa-solid fa-calendar-days text-secondary"></i>
                             Sinh ngày: 05/12/2003
                         </div>
                     </div>
-                    <h1 class="max-w-4xl text-5xl font-black leading-[1.04] tracking-normal text-[var(--text)]">
-                        Thái Phạm Hữu Thắng
+                    <h1 class="max-w-4xl text-[2.3rem] font-black leading-[1.04] tracking-normal text-[var(--text)] sm:text-5xl lg:text-7xl">
+                        <span class="block sm:inline">Thái Phạm</span>
+                        <span class="block sm:inline">Hữu Thắng</span>
                     </h1>
-                    <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
+                    <p class="mt-5 max-w-2xl text-base leading-8 text-muted sm:mt-6 sm:text-lg">
                         Fullstack Web Developer với kinh nghiệm xây dựng sản phẩm, ứng dụng AI vào giải quyết bài toán thực tế và nhiều năm kinh nghiệm giảng dạy, đào tạo.
                     </p>
-                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                        <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary via-secondary to-accent px-6 py-4 font-black text-ink shadow-glow transition hover:-translate-y-0.5 hover:brightness-110">
+                    <div class="mt-7 grid gap-3 sm:mt-8 sm:flex sm:flex-row">
+                        <a href="#contact" class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary via-secondary to-accent px-6 py-4 font-black text-ink shadow-glow transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto">
                             Liên hệ công việc
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
-                        <a href="#experience" class="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-6 py-4 font-black text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:text-primary">
+                        <a href="#experience" class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-6 py-4 font-black text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:text-primary sm:w-auto">
                             Xem năng lực
                         </a>
-                        <a href="https://github.com/HuuThang0512" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-6 py-4 font-black text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:border-violet hover:text-violet">
+                        <a href="https://github.com/HuuThang0512" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-6 py-4 font-black text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:border-violet hover:text-violet sm:w-auto">
                             GitHub
                             <i class="fa-brands fa-github"></i>
                         </a>
                     </div>
-                    <div class="mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div class="mt-9 grid max-w-2xl grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-3">
                         <div class="surface rounded-lg p-4 shadow-sm">
-                            <p class="text-2xl font-black text-[var(--text)]">Fullstack</p>
+                            <p class="text-xl font-black text-[var(--text)] sm:text-2xl">Fullstack</p>
                             <p class="mt-1 text-sm font-bold text-muted">Frontend, backend, dữ liệu và triển khai tính năng</p>
                         </div>
                         <div class="surface rounded-lg p-4 shadow-sm">
-                            <p class="text-2xl font-black text-[var(--text)]">Sư phạm</p>
+                            <p class="text-xl font-black text-[var(--text)] sm:text-2xl">Sư phạm</p>
                             <p class="mt-1 text-sm font-bold text-muted">Thiết kế bài học, truyền đạt và dẫn dắt dự án</p>
                         </div>
                         <div class="surface rounded-lg p-4 shadow-sm">
-                            <p class="text-2xl font-black text-[var(--text)]">AI-ready</p>
+                            <p class="text-xl font-black text-[var(--text)] sm:text-2xl">AI-ready</p>
                             <p class="mt-1 text-sm font-bold text-muted">Ứng dụng Python, automation và AI vào giáo dục</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative mx-auto w-full max-w-md">
-                    <div class="animated-border float-card surface relative overflow-hidden rounded-lg p-7 shadow-card">
-                        <div class="rounded-lg bg-[linear-gradient(135deg,rgba(56,189,248,.18),rgba(52,211,153,.14),rgba(245,158,11,.12))] p-4">
+                <div class="order-1 mx-auto w-full max-w-[18rem] sm:max-w-sm lg:order-2 lg:max-w-md">
+                    <div class="animated-border float-card surface relative overflow-hidden rounded-lg p-4 shadow-card sm:p-6 lg:p-7">
+                        <div class="rounded-lg bg-[linear-gradient(135deg,rgba(56,189,248,.18),rgba(52,211,153,.14),rgba(245,158,11,.12))] p-3 sm:p-4">
                             <img
                                 src="https://res.cloudinary.com/drrv5soxc/image/upload/v1781331196/Anh_chan_dung_rbf85c.jpg"
                                 alt="Ảnh chân dung Thái Phạm Hữu Thắng"
                                 class="mx-auto aspect-[4/5] w-full rounded-lg object-cover object-center shadow-card ring-1 ring-white/10"
                             >
                         </div>
-                        <div class="mt-7 space-y-4">
+                        <div class="mt-5 hidden space-y-3 sm:mt-7 sm:block sm:space-y-4">
                             <div class="surface-soft rounded-lg p-5">
                                 <p class="text-sm font-black uppercase tracking-[0.2em] text-muted">Định vị chuyên môn</p>
                                 <p class="mt-2 text-lg font-black text-[var(--text)]">Developer có tư duy sư phạm, Instructor có năng lực kỹ thuật.</p>
                             </div>
-                            <div class="grid grid-cols-2 gap-3">
+                            <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
                                 <div class="surface-soft rounded-lg p-4">
                                     <i class="fa-solid fa-code text-primary"></i>
                                     <p class="mt-2 text-sm font-black text-[var(--text)]">Build sản phẩm rõ logic</p>

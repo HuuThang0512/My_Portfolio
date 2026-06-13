@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thái Phạm Hữu Thắng - Portfolio</title>
+    <meta name="description" content="Portfolio của Thái Phạm Hữu Thắng - EdTech Developer, Educator, Fullstack Web & Python Developer.">
+    <script>
+        let savedTheme = null;
+        try {
+            savedTheme = localStorage.getItem('theme');
+        } catch (error) {
+            savedTheme = null;
+        }
+        document.documentElement.classList.toggle('dark', savedTheme ? savedTheme === 'dark' : true);
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.tailwind = window.tailwind || {};
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Nunito Sans"', 'ui-sans-serif', 'system-ui']
+                    },
+                    colors: {
+                        ink: '#0b1120',
+                        primary: '#38bdf8',
+                        secondary: '#34d399',
+                        accent: '#f59e0b',
+                        rose: '#fb7185',
+                        violet: '#a78bfa'
+                    },
+                    boxShadow: {
+                        card: '0 18px 50px rgba(2, 6, 23, 0.16)',
+                        glow: '0 24px 80px rgba(56, 189, 248, 0.22)'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --page: #f8fafc;
+            --surface: #ffffff;
+            --surface-soft: #eef6ff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --line: rgba(15, 23, 42, .1);
+            --hero-grid: rgba(37, 99, 235, .15);
+            --glow-a: rgba(56, 189, 248, .18);
+            --glow-b: rgba(52, 211, 153, .14);
+            --glow-c: rgba(251, 113, 133, .12);
+            --contact-bg: linear-gradient(135deg, #eef7ff, #ecfdf5, #fff7ed);
+            --contact-text: #0f172a;
+            --contact-muted: #64748b;
+            --contact-action-bg: rgba(255, 255, 255, .72);
+            --contact-action-text: #0f172a;
+            --footer-bg: #f8fafc;
+            --footer-text: #64748b;
+        }
+
+        .dark {
+            --page: #080d18;
+            --surface: rgba(15, 23, 42, .82);
+            --surface-soft: rgba(30, 41, 59, .72);
+            --text: #f8fafc;
+            --muted: #aab7ca;
+            --line: rgba(148, 163, 184, .18);
+            --hero-grid: rgba(56, 189, 248, .16);
+            --glow-a: rgba(56, 189, 248, .25);
+            --glow-b: rgba(52, 211, 153, .20);
+            --glow-c: rgba(167, 139, 250, .18);
+            --contact-bg: linear-gradient(135deg, #07111f, #0f172a, #0c2a32);
+            --contact-text: #ffffff;
+            --contact-muted: #cbd5e1;
+            --contact-action-bg: rgba(255, 255, 255, .10);
+            --contact-action-text: #ffffff;
+            --footer-bg: #0b1120;
+            --footer-text: #94a3b8;
+        }
+
+        body {
+            background: var(--page);
+            color: var(--text);
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 72px;
+            height: 4px;
+            margin: 18px auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #38bdf8, #34d399, #f59e0b);
+        }
+
+        .hero-grid {
+            background-image:
+                linear-gradient(var(--hero-grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--hero-grid) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: linear-gradient(to bottom, black 0%, transparent 88%);
+        }
+
+        .hero-bg {
+            background:
+                linear-gradient(125deg, var(--page) 8%, transparent 46%, var(--page) 92%),
+                linear-gradient(135deg, var(--glow-a), transparent 34%),
+                linear-gradient(225deg, var(--glow-b), transparent 38%),
+                linear-gradient(315deg, var(--glow-c), transparent 42%);
+            background-size: 100% 100%, 180% 180%, 180% 180%, 180% 180%;
+            animation: color-drift 14s ease-in-out infinite alternate;
+        }
+
+        .surface {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+
+        .surface::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto;
+            height: 3px;
+            background: linear-gradient(90deg, #38bdf8, #34d399, #f59e0b, #fb7185, #a78bfa);
+            opacity: .72;
+        }
+
+        .surface:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, .38);
+            box-shadow: 0 24px 70px rgba(2, 6, 23, .16);
+        }
+
+        .surface-soft {
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+        }
+
+        .text-muted {
+            color: var(--muted);
+        }
+
+        .contact-section {
+            background: var(--contact-bg);
+            color: var(--contact-text);
+        }
+
+        .contact-muted {
+            color: var(--contact-muted);
+        }
+
+        .contact-action {
+            background: var(--contact-action-bg);
+            border: 1px solid var(--line);
+            color: var(--contact-action-text);
+        }
+
+        .animated-border {
+            position: relative;
+            isolation: isolate;
+            border: 1px solid transparent;
+            background:
+                linear-gradient(var(--surface), var(--surface)) padding-box,
+                linear-gradient(135deg, #38bdf8, #34d399, #f59e0b, #fb7185, #a78bfa, #38bdf8) border-box;
+            background-size: auto, 240% 240%;
+            animation: border-flow 9s linear infinite;
+        }
+
+        .skill-chip {
+            border: 1px solid var(--line);
+            background: linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(56, 189, 248, .08));
+            transition: transform .2s ease, border-color .2s ease;
+        }
+
+        .skill-chip:hover {
+            transform: translateY(-2px);
+            border-color: rgba(52, 211, 153, .45);
+        }
+
+        .float-card {
+            animation: soft-float 6s ease-in-out infinite;
+        }
+
+        @keyframes color-drift {
+            from { background-position: center, left top, right top, left bottom; }
+            to { background-position: center, right bottom, left bottom, right top; }
+        }
+
+        @keyframes border-flow {
+            to { background-position: 240% 0; }
+        }
+
+        @keyframes soft-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased transition-colors duration-300">
+
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-[var(--line)] bg-white/82 backdrop-blur-xl transition-colors duration-300 dark:bg-ink/82">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+            <!-- <a href="#home" class="group flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary via-secondary to-accent text-sm font-black text-ink shadow-glow">TT</span>
+                <span class="font-black tracking-tight text-[var(--text)] transition group-hover:text-primary">Thắng Thái</span>
+            </a> -->
+            <div class="hidden items-center gap-7 text-sm font-extrabold text-muted md:flex">
+                <a href="#about" class="hover:text-primary transition">Giới thiệu</a>
+                <a href="#experience" class="hover:text-primary transition">Kinh nghiệm</a>
+                <a href="#skills" class="hover:text-primary transition">Kỹ năng</a>
+                <a href="#github" class="hover:text-primary transition">GitHub</a>
+                <a href="#achievements" class="hover:text-primary transition">Thành tựu</a>
+                <a href="#contact" class="rounded-lg bg-[var(--text)] px-5 py-2.5 text-[var(--page)] shadow-sm transition hover:bg-primary hover:text-ink">Liên hệ</a>
+            </div>
+            <button id="theme-toggle" type="button" class="ml-4 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--line)] bg-[var(--surface)] text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:text-primary" aria-label="Đổi giao diện sáng tối">
+                <i id="theme-icon" class="fa-solid fa-sun"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main id="home">
+        <section class="relative isolate overflow-hidden pb-20 pt-32 sm:pt-36 lg:pb-28">
+            <div class="hero-bg absolute inset-0 -z-10"></div>
+            <div class="hero-grid absolute inset-0 -z-10 opacity-80"></div>
+
+            <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-[1.12fr_.88fr] lg:px-8">
+                <div>
+                    <div class="mb-6 flex flex-wrap gap-3">
+                        <div class="animated-border inline-flex items-center gap-2 rounded-lg bg-[var(--surface)] px-4 py-2 text-sm font-black text-primary shadow-sm">
+                            <i class="fa-solid fa-bolt"></i>
+                            Fullstack EdTech Developer · Technology Instructor
+                        </div>
+                        <div class="animated-border inline-flex items-center gap-2 rounded-lg bg-[var(--surface)] px-4 py-2 text-sm font-black text-primary shadow-sm">
+                            <i class="fa-solid fa-calendar-days text-secondary"></i>
+                            Sinh ngày: 05/12/2003
+                        </div>
+                    </div>
+                    <h1 class="max-w-4xl text-5xl font-black leading-[1.04] tracking-normal text-[var(--text)]">
+                        Thái Phạm Hữu Thắng
+                    </h1>
+                    <p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
+                        Fullstack Web Developer với kinh nghiệm xây dựng sản phẩm, ứng dụng AI vào giải quyết bài toán thực tế và nhiều năm kinh nghiệm giảng dạy, đào tạo.
+                    </p>
+                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary via-secondary to-accent px-6 py-4 font-black text-ink shadow-glow transition hover:-translate-y-0.5 hover:brightness-110">
+                            Liên hệ công việc
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#experience" class="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-6 py-4 font-black text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:border-primary hover:text-primary">
+                            Xem năng lực
+                        </a>
+                        <a href="https://github.com/HuuThang0512" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-6 py-4 font-black text-[var(--text)] shadow-sm transition hover:-translate-y-0.5 hover:border-violet hover:text-violet">
+                            GitHub
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
+                    <div class="mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+                        <div class="surface rounded-lg p-4 shadow-sm">
+                            <p class="text-2xl font-black text-[var(--text)]">Fullstack</p>
+                            <p class="mt-1 text-sm font-bold text-muted">Frontend, backend, dữ liệu và triển khai tính năng</p>
+                        </div>
+                        <div class="surface rounded-lg p-4 shadow-sm">
+                            <p class="text-2xl font-black text-[var(--text)]">Sư phạm</p>
+                            <p class="mt-1 text-sm font-bold text-muted">Thiết kế bài học, truyền đạt và dẫn dắt dự án</p>
+                        </div>
+                        <div class="surface rounded-lg p-4 shadow-sm">
+                            <p class="text-2xl font-black text-[var(--text)]">AI-ready</p>
+                            <p class="mt-1 text-sm font-bold text-muted">Ứng dụng Python, automation và AI vào giáo dục</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative mx-auto w-full max-w-md">
+                    <div class="animated-border float-card surface relative overflow-hidden rounded-lg p-7 shadow-card">
+                        <div class="rounded-lg bg-[linear-gradient(135deg,rgba(56,189,248,.18),rgba(52,211,153,.14),rgba(245,158,11,.12))] p-4">
+                            <img
+                                src="https://res.cloudinary.com/drrv5soxc/image/upload/v1781331196/Anh_chan_dung_rbf85c.jpg"
+                                alt="Ảnh chân dung Thái Phạm Hữu Thắng"
+                                class="mx-auto aspect-[4/5] w-full rounded-lg object-cover object-center shadow-card ring-1 ring-white/10"
+                            >
+                        </div>
+                        <div class="mt-7 space-y-4">
+                            <div class="surface-soft rounded-lg p-5">
+                                <p class="text-sm font-black uppercase tracking-[0.2em] text-muted">Định vị chuyên môn</p>
+                                <p class="mt-2 text-lg font-black text-[var(--text)]">Developer có tư duy sư phạm, Instructor có năng lực kỹ thuật.</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="surface-soft rounded-lg p-4">
+                                    <i class="fa-solid fa-code text-primary"></i>
+                                    <p class="mt-2 text-sm font-black text-[var(--text)]">Build sản phẩm rõ logic</p>
+                                </div>
+                                <div class="surface-soft rounded-lg p-4">
+                                    <i class="fa-solid fa-chalkboard-user text-secondary"></i>
+                                    <p class="mt-2 text-sm font-black text-[var(--text)]">Dạy kỹ thuật dễ hiểu</p>
+                                </div>
+                                <div class="surface-soft rounded-lg p-4">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-accent"></i>
+                                    <p class="mt-2 text-sm font-black text-[var(--text)]">Tối ưu bằng AI</p>
+                                </div>
+                                <div class="surface-soft rounded-lg p-4">
+                                    <i class="fa-solid fa-diagram-project text-rose"></i>
+                                    <p class="mt-2 text-sm font-black text-[var(--text)]">Tư duy hệ thống</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 sm:py-24">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="mx-auto max-w-3xl text-center">
+                    <p class="text-sm font-black uppercase tracking-[0.25em] text-primary">About me</p>
+                    <h2 class="section-title mt-3 text-3xl font-black tracking-normal text-[var(--text)] sm:text-4xl">Giới thiệu bản thân</h2>
+                    <p class="mt-8 text-lg leading-8 text-muted">
+                        Có nền tảng sư phạm chính quy, từng làm trong môi trường EdTech và có khả năng biến yêu cầu học tập thành tính năng phần mềm. Điểm mạnh nhất là nhìn một vấn đề giáo dục từ nhiều góc: người học, giáo viên, vận hành lớp học và hệ thống kỹ thuật phía sau.
+                    </p>
+                </div>
+                <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="surface rounded-lg p-6 shadow-card">
+                        <i class="fa-solid fa-laptop-code text-2xl text-secondary"></i>
+                        <h3 class="mt-5 font-black text-[var(--text)]">Fullstack Web & Python</h3>
+                        <p class="mt-2 text-sm leading-6 text-muted">Có thể xử lý giao diện, logic nghiệp vụ, dữ liệu và tích hợp AI trong cùng một luồng sản phẩm.</p>
+                    </div>
+                    <div class="surface rounded-lg p-6 shadow-card">
+                        <i class="fa-solid fa-chalkboard-user text-2xl text-primary"></i>
+                        <h3 class="mt-5 font-black text-[var(--text)]">Sư phạm công nghệ</h3>
+                        <p class="mt-2 text-sm leading-6 text-muted">Biết thiết kế bài học, giải thích khái niệm khó và dẫn dắt học viên từng bước đến sản phẩm hoàn chỉnh.</p>
+                    </div>
+                    <div class="surface rounded-lg p-6 shadow-card">
+                        <i class="fa-solid fa-lightbulb text-2xl text-accent"></i>
+                        <h3 class="mt-5 font-black text-[var(--text)]">Tư duy sản phẩm</h3>
+                        <p class="mt-2 text-sm leading-6 text-muted">Ưu tiên tính rõ ràng, tốc độ học và trải nghiệm sử dụng thay vì chỉ hoàn thành chức năng.</p>
+                    </div>
+                    <div class="surface rounded-lg p-6 shadow-card">
+                        <i class="fa-solid fa-robot text-2xl text-rose"></i>
+                        <h3 class="mt-5 font-black text-[var(--text)]">AI trong giáo dục</h3>
+                        <p class="mt-2 text-sm leading-6 text-muted">Biết cách đưa AI vào dạy học theo hướng thực dụng: hỗ trợ giáo viên, cá nhân hóa học tập và tăng hiệu quả phản hồi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="border-y border-[var(--line)] bg-[var(--surface-soft)] py-20 sm:py-24">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="grid gap-12 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
+                    <div class="lg:sticky lg:top-28">
+                        <p class="text-sm font-black uppercase tracking-[0.25em] text-primary">Experience</p>
+                        <h2 class="mt-3 text-3xl font-black tracking-normal text-[var(--text)] sm:text-4xl">Kinh nghiệm làm việc</h2>
+                        <p class="mt-5 leading-8 text-muted">Không chỉ “biết code” hoặc “biết dạy”; tôi còn biết cách kết nối hai năng lực đó để tạo ra sản phẩm học tập có cấu trúc, dễ hiểu và dùng được trong thực tế.</p>
+                    </div>
+                    <div class="space-y-5">
+                        <article class="group surface rounded-lg p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-card sm:p-8">
+                            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                                <div>
+                                    <span class="inline-flex rounded-lg bg-sky-500/10 px-3 py-1 text-xs font-black text-primary">2023 - Hiện tại</span>
+                                    <h3 class="mt-4 text-2xl font-black text-[var(--text)]">Giảng viên Công nghệ</h3>
+                                    <p class="mt-1 font-black text-muted">Trường học Công nghệ MindX</p>
+                                </div>
+                                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-sky-500/10 text-primary">
+                                    <i class="fa-solid fa-chalkboard-user text-xl"></i>
+                                </div>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-sm leading-7 text-muted">
+                                <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-secondary"></i><span>Giảng dạy Scratch, GameMaker, Python, lập trình web và tư duy lập trình cho nhiều nhóm học sinh với cách diễn giải gần gũi, dễ thực hành.</span></li>
+                                <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-secondary"></i><span>Dẫn dắt học viên xây dựng dự án phần mềm đầu tay, rèn tư duy phân tích bài toán và thói quen cải tiến sản phẩm.</span></li>
+                                <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-secondary"></i><span>Chuyển hóa kiến thức kỹ thuật khó thành lộ trình học mạch lạc, giúp học viên tự tin hơn khi làm sản phẩm thật.</span></li>
+                            </ul>
+                        </article>
+
+                        <article class="group surface rounded-lg p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-card sm:p-8">
+                            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                                <div>
+                                    <span class="inline-flex rounded-lg bg-emerald-500/10 px-3 py-1 text-xs font-black text-secondary">2024-Hiện tại</span>
+                                    <h3 class="mt-4 text-2xl font-black text-[var(--text)]">Lập trình viên</h3>
+                                    <p class="mt-1 font-black text-muted">Công ty CP Khoa học và Công nghệ Giáo dục OLM</p>
+                                </div>
+                                <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-secondary">
+                                    <i class="fa-solid fa-code text-xl"></i>
+                                </div>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-sm leading-7 text-muted">
+                                <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-secondary"></i><span>Tham gia phát triển hệ thống phục vụ hoạt động dạy và học trực tuyến ở quy mô sản phẩm thật: <a href="https://olm.vn" target="_blank" class="text-primary hover:text-secondary font-bold">olm.vn</a></span></li>
+                                <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-secondary"></i><span>Xây dựng tính năng hệ thống với trọng tâm về độ ổn định, trải nghiệm người dùng và tính dễ bảo trì.</span></li>
+                                <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-secondary"></i><span>Làm việc ở giao điểm giữa nghiệp vụ giáo dục và kỹ thuật, giúp yêu cầu sản phẩm được triển khai sát nhu cầu lớp học hơn.</span></li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 sm:py-24">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="mx-auto max-w-3xl text-center">
+                    <p class="text-sm font-black uppercase tracking-[0.25em] text-primary">Skill stack</p>
+                    <h2 class="section-title mt-3 text-3xl font-black tracking-normal text-[var(--text)] sm:text-4xl">Kỹ năng & chuyên môn</h2>
+                </div>
+                <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+                    <div class="surface rounded-lg p-7 shadow-card">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-sky-500/10 text-primary"><i class="fa-solid fa-code text-xl"></i></div>
+                        <h3 class="mt-6 text-xl font-black text-[var(--text)]">Web Engineering</h3>
+                        <p class="mt-3 text-sm leading-6 text-muted">Triển khai tính năng từ giao diện đến backend, hiểu luồng dữ liệu, API, database và tích hợp dịch vụ cloud.</p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-primary">Frontend: React, TypeScript, UI</span>
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-primary">Backend: Laravel/PHP, REST API</span>
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-primary">Data & Cloud: MySQL, MongoDB, Firebase, Cloudinary</span>
+                        </div>
+                    </div>
+                    <div class="surface rounded-lg p-7 shadow-card">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-violet/10 text-violet"><i class="fa-solid fa-wand-magic-sparkles text-xl"></i></div>
+                        <h3 class="mt-6 text-xl font-black text-[var(--text)]">Python, AI & Automation</h3>
+                        <p class="mt-3 text-sm leading-6 text-muted">Dùng Python và AI để tạo công cụ hỗ trợ học tập, tự động hóa quy trình, xử lý dữ liệu và tăng tốc phản hồi.</p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-violet">Python automation</span>
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-violet">AI workflow & data handling</span>
+                        </div>
+                    </div>
+                    <div class="surface rounded-lg p-7 shadow-card">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-emerald-500/10 text-secondary"><i class="fa-solid fa-chalkboard-user text-xl"></i></div>
+                        <h3 class="mt-6 text-xl font-black text-[var(--text)]">Giảng dạy & Sư phạm</h3>
+                        <p class="mt-3 text-sm leading-6 text-muted">Mạnh ở việc giải thích khái niệm kỹ thuật, thiết kế tiến trình học và giúp học viên biến kiến thức thành sản phẩm.</p>
+                        <div class="mt-6 flex flex-wrap gap-2">
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-secondary">Programming teaching: Scratch, GameMaker, Python</span>
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-secondary">Lesson design & project coaching</span>
+                            <span class="skill-chip rounded-lg px-3 py-2 text-sm font-black text-secondary">AI in Education</span>
+                        </div>
+                    </div>
+                    <div class="surface rounded-lg p-7 shadow-card">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-rose/10 text-rose"><i class="fa-solid fa-user-gear text-xl"></i></div>
+                        <h3 class="mt-6 text-xl font-black text-[var(--text)]">Lợi thế phối hợp</h3>
+                        <p class="mt-3 text-sm leading-6 text-muted">Làm việc có trách nhiệm, học nhanh và giao tiếp rõ ràng giữa góc nhìn kỹ thuật, sản phẩm và lớp học.</p>
+                        <ul class="mt-6 space-y-3 text-sm leading-6 text-muted">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-rose"></i><span>Theo việc đến cùng, ưu tiên kết quả có thể dùng được.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-rose"></i><span>Tự học nhanh, đào sâu vấn đề và biến kiến thức mới thành thực hành.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 text-rose"></i><span>Diễn đạt kỹ thuật rõ ràng với học viên, giáo viên và đội sản phẩm.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="github" class="py-20 sm:py-24">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="animated-border surface grid gap-8 rounded-lg p-7 shadow-card md:grid-cols-[.9fr_1.1fr] md:p-9">
+                    <div>
+                        <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-violet/10 text-violet">
+                            <i class="fa-brands fa-github text-3xl"></i>
+                        </div>
+                        <p class="mt-6 text-sm font-black uppercase tracking-[0.25em] text-violet">Technical proof</p>
+                        <h2 class="mt-3 text-3xl font-black tracking-normal text-[var(--text)] sm:text-4xl">GitHub cá nhân</h2>
+                        <p class="mt-5 leading-8 text-muted">
+                            Đây là nơi lưu trữ và phát triển các dự án lập trình, thử nghiệm kỹ thuật và các ý tưởng có thể áp dụng vào sản phẩm giáo dục.
+                        </p>
+                        <a href="https://github.com/HuuThang0512" target="_blank" rel="noopener noreferrer" class="mt-7 inline-flex items-center justify-center gap-3 rounded-lg bg-gradient-to-r from-violet via-primary to-secondary px-6 py-4 font-black text-ink shadow-glow transition hover:-translate-y-0.5 hover:brightness-110">
+                            github.com/HuuThang0512
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div class="grid gap-4 sm:grid-cols-3">
+                        <div class="surface-soft rounded-lg p-5">
+                            <i class="fa-solid fa-code-branch text-primary"></i>
+                            <h3 class="mt-4 font-black text-[var(--text)]">Source code</h3>
+                            <p class="mt-2 text-sm leading-6 text-muted">Theo dõi cách tổ chức code, cấu trúc tính năng và học công nghệ mới.</p>
+                        </div>
+                        <div class="surface-soft rounded-lg p-5">
+                            <i class="fa-solid fa-flask text-accent"></i>
+                            <h3 class="mt-4 font-black text-[var(--text)]">Thử nghiệm</h3>
+                            <p class="mt-2 text-sm leading-6 text-muted">Không gian để thử framework, automation, AI workflow và các bài toán nhỏ.</p>
+                        </div>
+                        <div class="surface-soft rounded-lg p-5">
+                            <i class="fa-solid fa-graduation-cap text-secondary"></i>
+                            <h3 class="mt-4 font-black text-[var(--text)]">EdTech mindset</h3>
+                            <p class="mt-2 text-sm leading-6 text-muted">Ưu tiên dự án có tính ứng dụng, dễ hiểu và có thể phục vụ việc học.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="border-y border-[var(--line)] bg-[var(--surface-soft)] py-20 sm:py-24">
+            <div class="mx-auto max-w-7xl px-5 lg:px-8">
+                <div class="mx-auto max-w-3xl text-center">
+                    <p class="text-sm font-black uppercase tracking-[0.25em] text-primary">Recognition</p>
+                    <h2 class="section-title mt-3 text-3xl font-black tracking-normal text-[var(--text)] sm:text-4xl">Thành tựu & chứng chỉ</h2>
+                </div>
+                <div class="mt-12 grid gap-6 lg:grid-cols-2">
+                    <article class="surface rounded-lg p-7 shadow-card">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-amber-500/10 text-accent"><i class="fa-solid fa-award text-2xl"></i></div>
+                            <h3 class="text-xl font-black text-[var(--text)]">Học thuật & Giải thưởng</h3>
+                        </div>
+                        <div class="mt-7 space-y-5 text-sm leading-7 text-muted">
+                            <p><strong class="text-[var(--text)]">Học bổng Xuất sắc:</strong> đạt 7/8 học kỳ trong quá trình học tập tại Trường Đại học Sư phạm Hà Nội.</p>
+                            <p><strong class="text-[var(--text)]">Olympic Tin học:</strong> đạt giải Nhì cấp trường Đại học Sư phạm Hà Nội.</p>
+                        </div>
+                    </article>
+                    <article class="surface rounded-lg p-7 shadow-card">
+                        <div class="flex items-center gap-4">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-lg bg-sky-500/10 text-primary"><i class="fa-solid fa-certificate text-2xl"></i></div>
+                            <h3 class="text-xl font-black text-[var(--text)]">Chứng chỉ</h3>
+                        </div>
+                        <div class="surface-soft mt-7 rounded-lg p-5">
+                            <h4 class="font-black text-[var(--text)]">Gemini Certified Educator</h4>
+                            <p class="mt-1 text-sm font-bold text-muted">Google for Education</p>
+                            <p class="mt-2 text-xs font-black text-primary">31/03/2026 - 31/03/2029</p>
+                            <p class="mt-4 text-sm leading-7 text-muted">Chứng thực năng lực áp dụng các giải pháp Trí tuệ Nhân tạo của Google vào thực tế giáo dục.</p>
+                        </div>
+                        <div class="surface-soft mt-4 rounded-lg p-5">
+                            <h4 class="font-black text-[var(--text)]">VSTEP B2</h4>
+                            <p class="mt-1 text-sm font-bold text-muted">Chứng chỉ năng lực tiếng Anh bậc 4/6</p>
+                            <p class="mt-4 text-sm leading-7 text-muted">Bổ trợ khả năng đọc tài liệu kỹ thuật, học công nghệ mới và làm việc với tài nguyên tiếng Anh.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section relative overflow-hidden py-20 sm:py-24">
+            <div class="mx-auto max-w-4xl px-5 text-center lg:px-8">
+                <p class="text-sm font-black uppercase tracking-[0.25em] text-primary">Let’s connect</p>
+                <h2 class="mt-3 text-3xl font-black tracking-normal text-[var(--contact-text)] sm:text-5xl">Sẵn sàng cộng tác trong các dự án EdTech, Web App hoặc đào tạo IT.</h2>
+                <p class="contact-muted mx-auto mt-6 max-w-2xl leading-8">Phù hợp với những môi trường cần người vừa hiểu kỹ thuật, vừa hiểu giáo dục, vừa có thể biến ý tưởng thành sản phẩm rõ ràng và có tác động thực tế.</p>
+                <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                    <a href="mailto:huuthangblue0512@gmail.com" class="contact-action inline-flex items-center justify-center gap-3 rounded-lg px-6 py-4 font-black transition hover:-translate-y-0.5 hover:border-violet hover:text-violet">
+                        <i class="fa-solid fa-envelope text-primary"></i>
+                        huuthangblue0512@gmail.com
+                    </a>
+                    <a href="https://github.com/HuuThang0512" target="_blank" rel="noopener noreferrer" class="contact-action inline-flex items-center justify-center gap-3 rounded-lg px-6 py-4 font-black transition hover:-translate-y-0.5 hover:border-violet hover:text-violet">
+                        <i class="fa-brands fa-github"></i>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="px-5 py-8 text-center text-sm font-bold" style="background: var(--footer-bg); color: var(--footer-text);">
+        <p>&copy; 2026 Thái Phạm Hữu Thắng. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const html = document.documentElement;
+        const toggle = document.getElementById('theme-toggle');
+        const icon = document.getElementById('theme-icon');
+
+        function syncThemeIcon() {
+            const isDark = html.classList.contains('dark');
+            icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+
+        toggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            try {
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            } catch (error) {
+                // Theme still changes for the current page even when storage is blocked.
+            }
+            syncThemeIcon();
+        });
+
+        syncThemeIcon();
+
+        window.addEventListener('load', () => {
+            if (!window.location.hash) {
+                window.scrollTo(0, 0);
+            }
+        });
+    </script>
+</body>
+</html>
